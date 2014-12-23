@@ -1,0 +1,11 @@
+- download versi windows (http://git-scm.com/downloads) lalu diinstall.
+- setelah itu masuk ke direktori (sembarang) untuk menyimpan script program yang akan diupload
+- - - Contoh : E:\backup\Program
+- lalu ketikan "git clone https://github.com/rioriantana/KRI2015.git" tanpa tanda(")
+- masuk ke dir KRI2015 "cd KRI2015"
+- test dengan download isi file yang telah saya upload
+- masukan user & password (ada pada PORTAL ROBOTIKA)
+- copy kan semua file program ke dir KRI2015
+- setelah itu cek status "git status"
+- tambahkan dalam daftar upload " git add 'file' "
+- cek kembali "git status" , jika semua sudah ditambahkan maka ketik "git commit -am 
