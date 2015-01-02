@@ -1,0 +1,21 @@
+1 download Git Bash versi windows (http://git-scm.com/downloads) lalu diinstall.
+2 setelah itu masuk ke direktori lewat CMD (sembarang) untuk menyimpan script program yang akan diupload
+- - - Contoh : E:\backup\Program
+3 lalu ketikan "git clone https://github.com/rioriantana/KRI2015.git" tanpa tanda(")
+4 masuk ke dir KRI2015 "cd KRI2015"
+5 test dengan download isi file yang telah saya upload
+6 masukan user & password (ada pada PORTAL ROBOTIKA)
+7 copy kan semua file program ke dir KRI2015
+8 setelah itu cek status "git status"
+9 tambahkan dalam daftar upload " git add 'nama file' "
+10 cek kembali "git status" , jika semua sudah ditambahkan maka ketik "git commit -am upload"
+11 setelah itu upload "git push -u origin master"
+
+NB: * SEBELUM MELAKUKAN EDITING, HARAP MENGUPDATE SCRIPT DAHULU DENGAN "git pull"
+
+    * setelah langkah diatas dilakukan, untuk update script tidak perlu copy file script lagi.
+	langsung saja edit script dari dir KRI2015. Setelah selesai cek dengan "git status"
+	Lalu lakukan pengupload'an seperti langkah diatas mulai nomor 8.
+
+
+

@@ -1,2 +1,4 @@
 Rio
 flowchart?
+Flowchart belom dibuat bro,
+masih cek sensor-sensor untuk mengidentifikasi karakteristiknya dulu.
