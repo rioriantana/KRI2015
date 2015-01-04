@@ -3,7 +3,7 @@ unsigned int EchoPin1 = 8;
 unsigned int TrigPin1 = 9;
 unsigned long Time_Echo_us1 = 0; 
 unsigned long Distance1  = 0;
-
+//contohs
 //Sensor Belakang
 unsigned int EchoPin2 = 10;
 unsigned int TrigPin2 = 11;
