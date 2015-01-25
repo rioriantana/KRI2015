@@ -90,7 +90,12 @@ pinMode(EchoPin1, INPUT); //Pin Sensor Depan
  
  pinMode(M1, OUTPUT); //Pin Motor
  pinMode(M2, OUTPUT);
- 
+  sensordepan();
+  sensorbelakang();
+  sensorkiri();
+  sensorkanan();
+  sensordepankiri();
+  sensordepankanan();
  lcd.begin(16, 2);
 }
 
@@ -124,7 +129,21 @@ if(menu < 0){
     lcd.setCursor(0,1);
     lcd.print("Kalibrasi US");
         if(stKanan == HIGH){
-          submenu = 0;
+          if(stAtas == HIGH){
+            submenu = submenu-1;
+            delay(500);
+            }
+           if(stBawah == HIGH){
+            submenu = submenu+1;
+            delay(500);
+            }
+           if(submenu < 0){
+              submenu = 0;
+            }
+            
+           if(submenu > 5){
+              submenu = 5;
+            }
           switch(submenu){
             case 0:
               lcd.setCursor(0,0);
@@ -132,7 +151,7 @@ if(menu < 0){
               lcd.setCursor(0,1);
               lcd.print("US Depan");
               if(stKanan == HIGH){
-                sensordepan();
+                kalibrasiSensordepan();
               }
             break;
             case 1:
@@ -141,7 +160,7 @@ if(menu < 0){
               lcd.setCursor(0,1);
               lcd.print("US Kanan Depan");
               if(stKanan == HIGH){
-                sensordepankanan();
+                kalibrasiSensordepankanan();
               }
             break;
             case 2:
@@ -150,7 +169,7 @@ if(menu < 0){
               lcd.setCursor(0,1);
               lcd.print("US Kanan");
               if(stKanan == HIGH){
-                sensorkanan();
+                kalibrasiSensorkanan();
               }
             break;
             case 3:
@@ -159,7 +178,7 @@ if(menu < 0){
               lcd.setCursor(0,1);
               lcd.print("US Belakang");
               if(stKanan == HIGH){
-                sensorbelakang();
+                kalibrasiSensorbelakang();
               }
             break;
             case 4:
@@ -168,7 +187,7 @@ if(menu < 0){
               lcd.setCursor(0,1);
               lcd.print("US Kiri");
               if(stKanan == HIGH){
-                sensorkiri();
+                kalibrasiSensorkiri();
               }
             break;
             case 5:
@@ -177,7 +196,7 @@ if(menu < 0){
               lcd.setCursor(0,1);
               lcd.print("US Kiri Depan");
               if(stKanan == HIGH){
-                sensordepankiri();
+                kalibrasiSensordepankiri();
               }
             break;
             
@@ -190,7 +209,18 @@ if(menu < 0){
     lcd.setCursor(0,1);
     lcd.print("Kalibrasi Line");
         if(stKanan == HIGH){
-          menu = 0;
+          if(stAtas == HIGH){
+            submenu = submenu-1;
+            delay(500);
+            }
+           if(stBawah == HIGH){
+            submenu = submenu+1;
+            delay(500);
+            }
+           if(submenu < 0){
+              submenu = 0;
+            }
+            
       }
     break;
     case 2:
@@ -199,8 +229,18 @@ if(menu < 0){
     lcd.setCursor(0,1);
     lcd.print("Kalibrasi UV");
         if(stKanan == HIGH){
-          menu = 0;
-
+          if(stAtas == HIGH){
+            submenu = submenu-1;
+            delay(500);
+            }
+           if(stBawah == HIGH){
+            submenu = submenu+1;
+            delay(500);
+            }
+           if(submenu < 0){
+              submenu = 0;
+            }
+            
       }
     break;
     case 3:
@@ -209,8 +249,16 @@ if(menu < 0){
     lcd.setCursor(0,1);
     lcd.print("Cek Motor");
         if(stKanan == HIGH){
-          menu = 0;
-
+          maju();
+          delay(4000);
+          mundur();
+          delay(4000);
+          belokkiri();
+          delay(4000);
+          belokkanan();
+          delay(4000);
+          berhenti();
+          delay(4000);
       }
     break;
   } 
@@ -224,9 +272,6 @@ void sensordepan()
  digitalWrite(TrigPin1, LOW);
  Time_Echo_us1 = pulseIn(EchoPin1, HIGH);
  Distance1 = (Time_Echo_us1*34/100)/2;
- Serial.print("Present Distance is: ");
- Serial.print(Distance1, DEC);
- Serial.println("mm"); 
 }
 
 //Konversi Ke Jarak Sensor Belakang
@@ -237,9 +282,6 @@ void sensorbelakang()
  digitalWrite(TrigPin2, LOW);
  Time_Echo_us2 = pulseIn(EchoPin2, HIGH);
  Distance2 = (Time_Echo_us2*34/100)/2;
- Serial.print("Present Distance is: ");
- Serial.print(Distance2, DEC);
- Serial.println("mm"); 
 }
 
 //Konversi Ke Jarak Sensor Kiri
@@ -250,9 +292,6 @@ void sensorkiri()
  digitalWrite(TrigPin3, LOW);
  Time_Echo_us3 = pulseIn(EchoPin3, HIGH);
  Distance3 = (Time_Echo_us3*34/100)/2;
- Serial.print("Present Distance is: ");
- Serial.print(Distance3, DEC);
- Serial.println("mm"); 
 }
 
 //Konversi Ke Jarak Sensor Kanan
@@ -263,9 +302,6 @@ void sensorkanan()
  digitalWrite(TrigPin4, LOW);
  Time_Echo_us4 = pulseIn(EchoPin4, HIGH);
  Distance4 = (Time_Echo_us4*34/100)/2;
- Serial.print("Present Distance is: ");
- Serial.print(Distance4, DEC);
- Serial.println("mm"); 
 }
 
 //Konversi Ke Jarak Sensor Depan Kiri
@@ -276,9 +312,6 @@ void sensordepankiri()
  digitalWrite(TrigPin5, LOW);
  Time_Echo_us5 = pulseIn(EchoPin5, HIGH);
  Distance5 = (Time_Echo_us5*34/100)/2;
- Serial.print("Present Distance is: ");
- Serial.print(Distance5, DEC);
- Serial.println("mm"); 
 }
 
 //Konversi Ke Jarak Sensor Depan Kanan
@@ -289,11 +322,50 @@ void sensordepankanan()
  digitalWrite(TrigPin6, LOW);
  Time_Echo_us6 = pulseIn(EchoPin6, HIGH);
  Distance6 = (Time_Echo_us6*34/100)/2;
+}
+//Display kalibrasi
+
+void kalibrasiSensordepan()
+{
+ Serial.print("Present Distance is: ");
+ Serial.print(Distance1, DEC);
+ Serial.println("mm"); 
+}
+
+void kalibrasiSensorbelakang()
+{
+ Serial.print("Present Distance is: ");
+ Serial.print(Distance2, DEC);
+ Serial.println("mm"); 
+}
+
+void kalibrasiSensorkiri()
+{
+ Serial.print("Present Distance is: ");
+ Serial.print(Distance3, DEC);
+ Serial.println("mm"); 
+}
+
+void kalibrasiSensorkanan()
+{
+ Serial.print("Present Distance is: ");
+ Serial.print(Distance4, DEC);
+ Serial.println("mm"); 
+}
+
+void kalibrasiSensordepankiri()
+{
+ Serial.print("Present Distance is: ");
+ Serial.print(Distance5, DEC);
+ Serial.println("mm"); 
+}
+
+void kalibrasiSensordepankanan()
+{
  Serial.print("Present Distance is: ");
  Serial.print(Distance6, DEC);
  Serial.println("mm");
 }
-
 //Motor Maju
 void maju()
 {
