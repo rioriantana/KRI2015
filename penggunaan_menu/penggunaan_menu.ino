@@ -57,14 +57,18 @@ unsigned int TrigPin6 = 5;
 unsigned long Time_Echo_us6 = 0; 
 unsigned long Distance6  = 0;
 
-//Motor
-int E1 = 15;
-int M1 = 14;
-int E2 = 16;                      
-int M2 = 17;
+//Motor Kanan
+int Arah1Kanan = 15; //Input 1
+int Arah2Kanan = 14; //Input 2
+int PWMKanan = 18;  //Enable A
+
+//Motor Kiri
+int Arah1Kiri = 16; //Input 3
+int Arah2Kiri = 17; //Input 4
+int PWMKiri = 19; //Enable B
 
 //PWM
-int PWMmotor = 150;
+int PWMMotor = 150;
 
 
 
@@ -88,8 +92,13 @@ pinMode(EchoPin1, INPUT); //Pin Sensor Depan
  pinMode(EchoPin6, INPUT); //Pin Depan Kanan
  pinMode(TrigPin6, OUTPUT);
  
- pinMode(M1, OUTPUT); //Pin Motor
- pinMode(M2, OUTPUT);
+  pinMode(Arah1Kanan, OUTPUT);
+  pinMode(Arah2Kanan, OUTPUT);
+  pinMode(PWMKanan, OUTPUT);
+  pinMode(Arah1Kiri, OUTPUT);
+  pinMode(Arah1Kiri, OUTPUT);
+  pinMode(PWMKiri, OUTPUT);
+  
   sensordepan();
   sensorbelakang();
   sensorkiri();
@@ -369,43 +378,49 @@ void kalibrasiSensordepankanan()
 //Motor Maju
 void maju()
 {
-  digitalWrite(M1,HIGH);   
-  digitalWrite(M2,HIGH);       
-  analogWrite(E1, PWMmotor);
-  analogWrite(E2, PWMmotor);
+  analogWrite(PWMKanan, PWMMotor);
+  digitalWrite(Arah1Kanan, LOW);
+  digitalWrite(Arah2Kanan, HIGH);
+  analogWrite(PWMKiri, PWMMotor);
+  digitalWrite(Arah1Kiri, HIGH);
+  digitalWrite(Arah2Kiri, LOW);
 }
 
 //Motor Mundur
 void mundur()
 {
-  digitalWrite(M1,LOW);   
-  digitalWrite(M2,LOW);       
-  analogWrite(E1, PWMmotor);
-  analogWrite(E2, PWMmotor);
+  analogWrite(PWMKanan, PWMMotor);
+  digitalWrite(Arah1Kanan, HIGH);
+  digitalWrite(Arah2Kanan, LOW);
+  analogWrite(PWMKiri, PWMMotor);
+  digitalWrite(Arah1Kiri, LOW);
+  digitalWrite(Arah2Kiri, HIGH);
 }
 
 //Motor Belok Kiri
 void belokkiri()
 {
-  digitalWrite(M1,HIGH);
-  analogWrite(E1, PWMmotor);
-  analogWrite(E2, 0);
+  analogWrite(PWMKiri, PWMMotor);
+  digitalWrite(Arah1Kiri, HIGH);
+  digitalWrite(Arah2Kiri, LOW);
 }
 
 //Motor Belok Kanan
 void belokkanan()
 {
-  digitalWrite(M2,HIGH);       
-  analogWrite(E1, 0);
-  analogWrite(E2, PWMmotor);
+  analogWrite(PWMKanan, PWMMotor);
+  digitalWrite(Arah1Kanan, LOW);
+  digitalWrite(Arah2Kanan, HIGH);
 }
 
 //Motor Berhenti
 void berhenti()
 {
-  digitalWrite(M1,LOW);   
-  digitalWrite(M2,LOW);       
-  analogWrite(E1, 0);
-  analogWrite(E2, 0);
+  analogWrite(PWMKanan, 0);
+  digitalWrite(Arah1Kanan, LOW);
+  digitalWrite(Arah2Kanan, LOW);
+  analogWrite(PWMKiri, 0);
+  digitalWrite(Arah1Kiri, LOW);
+  digitalWrite(Arah2Kiri, LOW);
 }
 
