@@ -111,26 +111,26 @@ pinMode(EchoPin1, INPUT); //Pin Sensor Depan
 void loop(){
   stAtas = digitalRead(TombolAtas);
   int oke;
-if(stAtas == HIGH){
-menu = menu-1;
-delay(500);
-}
-stKiri = digitalRead(TombolKiri);
-if(stKiri == HIGH){
-digitalWrite(Reset, HIGH);
-}
-stBawah = digitalRead(TombolBawah);
-if(stBawah == HIGH){
-menu = menu+1;
-delay(500);
-}
-stKanan = digitalRead(TombolKanan);
-if(menu > 3){
-  menu = 3;
-}
-if(menu < 0){
-  menu = 0;
-}
+    if(stAtas == HIGH){
+    menu = menu-1;
+    delay(500);
+    }
+    stKiri = digitalRead(TombolKiri);
+    if(stKiri == HIGH){
+    digitalWrite(Reset, HIGH);
+    }
+    stBawah = digitalRead(TombolBawah);
+    if(stBawah == HIGH){
+    menu = menu+1;
+    delay(500);
+    }
+    stKanan = digitalRead(TombolKanan);
+    if(menu > 4){
+      menu = 4;
+    }
+    if(menu < 0){
+      menu = 0;
+    }
   switch(menu){
     case 0:
     lcd.setCursor(0,0);
@@ -270,8 +270,87 @@ if(menu < 0){
           delay(4000);
       }
     break;
+    case 4:
+    lcd.setCursor(0,0);
+    lcd.print("Pilih Menu");
+    lcd.setCursor(0,1);
+    lcd.print("Pilih Metode");
+    if(stKanan == HIGH){
+          if(stAtas == HIGH){
+            submenu = submenu-1;
+            delay(500);
+            }
+           if(stBawah == HIGH){
+            submenu = submenu+1;
+            delay(500);
+            }
+           if(submenu < 0){
+              submenu = 0;
+            }
+            
+           if(submenu > 5){
+              submenu = 5;
+            }
+          switch(submenu){
+            case 0:
+              lcd.setCursor(0,0);
+              lcd.print("Pilih Submenu");
+              lcd.setCursor(0,1);
+              lcd.print("Arena Kiri 1");
+              if(stKanan == HIGH){
+                //Logic Perintah
+              }
+            break;
+            case 1:
+              lcd.setCursor(0,0);
+              lcd.print("Pilih Submenu");
+              lcd.setCursor(0,1);
+              lcd.print("Arena Kiri 2");
+              if(stKanan == HIGH){
+                //Logic Perintah
+              }
+            break;
+            case 2:
+              lcd.setCursor(0,0);
+              lcd.print("Pilih Submenu");
+              lcd.setCursor(0,1);
+              lcd.print("Arena Kiri 3");
+              if(stKanan == HIGH){
+                //Logic Perintah
+              }
+            break;
+            case 3:
+              lcd.setCursor(0,0);
+              lcd.print("Pilih Submenu");
+              lcd.setCursor(0,1);
+              lcd.print("Arena Kanan 1");
+              if(stKanan == HIGH){
+                //Logic Perintah
+              }
+            break;
+            case 4:
+              lcd.setCursor(0,0);
+              lcd.print("Pilih Submenu");
+              lcd.setCursor(0,1);
+              lcd.print("Arena Kanan 2");
+              if(stKanan == HIGH){
+                //Logic Perintah
+              }
+            break;
+            case 5:
+              lcd.setCursor(0,0);
+              lcd.print("Pilih Submenu");
+              lcd.setCursor(0,1);
+              lcd.print("Arena Kanan 3");
+              if(stKanan == HIGH){
+                //Logic Perintah
+              }
+            break;
+          }
+    }
+    break;
   } 
-  
+    
 }
 
 void sensordepan()
