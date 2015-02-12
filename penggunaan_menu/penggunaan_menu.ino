@@ -17,6 +17,9 @@ int stBawah = 0;
 int menu = 0;
 int submenu = 0;
 
+int uvTron = 26;
+int kipas1 = 25;
+int kipas2 = 24;
 
 Servo myservo;
 unsigned int servo = 3;
@@ -91,6 +94,10 @@ pinMode(EchoPin1, INPUT); //Pin Sensor Depan
  pinMode(TrigPin5, OUTPUT);
  pinMode(EchoPin6, INPUT); //Pin Depan Kanan
  pinMode(TrigPin6, OUTPUT);
+ 
+  pinMode(uvTron, OUTPUT);
+  pinMode(kipas1, OUTPUT);
+  pinMode(kipas2, OUTPUT);
  
   pinMode(Arah1Kanan, OUTPUT);
   pinMode(Arah2Kanan, OUTPUT);
@@ -236,19 +243,15 @@ void loop(){
     lcd.setCursor(0,0);
     lcd.print("Pilih Menu");
     lcd.setCursor(0,1);
-    lcd.print("Kalibrasi UV");
+    lcd.print("Cek Peka UV");
         if(stKanan == HIGH){
-          if(stAtas == HIGH){
-            submenu = submenu-1;
+          int cekUv = digitalRead(uvTron);
             delay(500);
-            }
-           if(stBawah == HIGH){
-            submenu = submenu+1;
+          if(cekUv == HIGH){
+            digitalWrite(kipas1, HIGH);
+            digitalWrite(kipas2, HIGH);
             delay(500);
-            }
-           if(submenu < 0){
-              submenu = 0;
-            }
+          }
             
       }
     break;
