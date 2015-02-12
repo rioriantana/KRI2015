@@ -247,7 +247,7 @@ void loop(){
         if(stKanan == HIGH){
           int cekUv = digitalRead(uvTron);
             delay(500);
-          if(cekUv == HIGH){
+          if(cekUv == LOW){
             digitalWrite(kipas1, HIGH);
             digitalWrite(kipas2, HIGH);
             delay(500);
